@@ -4,9 +4,7 @@ interface WindowWithHotjar extends Window {
 
 declare const window: WindowWithHotjar;
 
-const hasWindow = () => {
-  return typeof window !== 'undefined';
-};
+const hasWindow = () => typeof window !== 'undefined';
 
 const appendScript = (scriptText: string, scriptId: string): boolean => {
   try {
