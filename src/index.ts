@@ -6,7 +6,6 @@ const Hotjar = {
   init: (hotjarId: number, hotjarVersion: number): boolean => {
     try {
       initScript(hotjarId, hotjarVersion);
-
       return true;
     } catch (error) {
       console.error('Error:', error);
