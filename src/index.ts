@@ -1,4 +1,6 @@
-import { checkReadyState, initScript } from './utils';
+import { checkReadyState, initScript, executeHotjarCommand } from './utils';
+
+type UserInfo = Record<string | number, string | number | Date | boolean>;
 
 const Hotjar = {
   init: (hotjarId: number, hotjarVersion: number): boolean => {
@@ -7,8 +9,25 @@ const Hotjar = {
 
       return true;
     } catch (error) {
-      console.error('Hotjar error:', error);
-
+      console.error('Error:', error);
+      return false;
+    }
+  },
+  identify: (userId: string | null, userInfo: UserInfo): boolean => {
+    try {
+      executeHotjarCommand('identify', userId, userInfo);
+      return true;
+    } catch (error) {
+      console.error('Error:', error);
+      return false;
+    }
+  },
+  stateChange: (relativePath: string): boolean => {
+    try {
+      executeHotjarCommand('stateChange', relativePath);
+      return true;
+    } catch (error) {
+      console.error('Error:', error);
       return false;
     }
   },

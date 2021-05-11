@@ -1,10 +1,28 @@
+type HotjarCommand = 'identify' | 'stateChange';
+
 interface WindowWithHotjar extends Window {
-  hj?: (method: string, ...data: unknown[]) => void;
+  hj?: (method: HotjarCommand, ...data: unknown[]) => void;
 }
 
 declare const window: WindowWithHotjar;
 
 const hasWindow = () => typeof window !== 'undefined';
+
+export const checkReadyState = (): boolean => {
+  if (hasWindow() && window.hj) {
+    return true;
+  }
+
+  return false;
+};
+
+export const executeHotjarCommand = (command: HotjarCommand, ...args: unknown[]): void => {
+  if (hasWindow() && window.hj) {
+    return window.hj(command, ...args);
+  }
+
+  throw Error('Hotjar is not available, make sure init has been called.');
+};
 
 const appendScript = (scriptText: string, scriptId: string): boolean => {
   try {
@@ -22,7 +40,7 @@ const appendScript = (scriptText: string, scriptId: string): boolean => {
   }
 };
 
-export function initScript(hotjarId: number, hotjarVersion: number): boolean {
+export const initScript = (hotjarId: number, hotjarVersion: number): boolean => {
   if (!hasWindow()) {
     return false;
   }
@@ -35,12 +53,4 @@ export function initScript(hotjarId: number, hotjarVersion: number): boolean {
   }
 
   throw Error('Failed to initialize Hotjar tracking script.');
-}
-
-export function checkReadyState(): boolean {
-  if (hasWindow() && window.hj) {
-    return true;
-  }
-
-  return false;
-}
+};
