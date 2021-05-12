@@ -65,23 +65,45 @@ Hotjar.init(siteId, hotjarVersion);
             You can fill the form to identify yourself with a name and favorite color.
           </p>
 
-          <label for="identify-hotjar-name">Your first name</label><input id="identify-hotjar-name" type="text" placeholder="John" />
-          <label for="identify-hotjar-color">Your favorite color</label><input id="identify-hotjar-color" type="text" placeholder="blue" />
-
-          <button class="button" id="identify-hotjar-button" disabled>Identify</button>
-
-          <div class="alert alert-success hidden" id="identify-hotjar-alert">Identify sent!</div>
+          <div id="identify-form">
+            <label for="identify-hotjar-name">Your first name</label>
+            <input id="identify-hotjar-name" type="text" placeholder="John" />
+            <label for="identify-hotjar-color">Your favorite color</label>
+            <input id="identify-hotjar-color" type="text" placeholder="blue" />
+            <button class="button" id="identify-hotjar-button" disabled>Identify</button>
+          </div>
+          <div class="alert alert-success hidden" id="identify-hotjar-alert"></div>
         </div>
         <div class="right">
-          <pre class="prettyprint"><code class="language-js">const userId = 999;
+          <pre class="prettyprint"><code class="language-js">const userId = 'abc_123';
 const firstName = 'John';
 const favoriteColor = 'blue';
-
 
 Hotjar.identify(userId, {
   first_name: firstName,
   color: favoriteColor
 });
+</code></pre>
+        </div>
+      </div>
+
+      <h2>Manual URL changes</h2>
+
+      <div class="row">
+        <div class="left">
+          <p>Depending on how your website routing works, you might need to manually instruct Hotjar when a route change has happened. <a target="_blank" href="https://help.hotjar.com/hc/en-us/articles/360034378534">More details about URL changes</a>.</p>
+          <p>
+            You can press the button to instruct Hotjar the URL has changed
+          </p>
+
+          <button class="button" id="url-hotjar-button" disabled>Change URL</button>
+
+          <div class="alert alert-success" id="url-hotjar-alert">The current page is /</div>
+        </div>
+        <div class="right">
+          <pre class="prettyprint"><code class="language-js">const newPage = '/new';
+
+Hotjar.stateChange(newPage);
 </code></pre>
         </div>
       </div>

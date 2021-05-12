@@ -57,7 +57,7 @@ h2 {
 }
 
 #jumbotron {
-  padding: 120px 10vw;
+  padding: 120px 10vw 80px 10vw;
 }
 #jumbotron h1 {
   text-align: center;
@@ -122,6 +122,23 @@ pre.prettyprint code {
   margin-bottom: 16px;
 }
 
+#content input {
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  margin: 10px 0 20px 0;
+  color: var(--color-text);
+  width: 200px;
+  border: none;
+  background: transparent;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px;
+  box-shadow: 0 0 0 1px var(--color-text);
+}
+#content input::placeholder {
+  color: var(--color-oxford);
+}
+
 .row {
   display: flex;
   align-items: stretch;
@@ -143,10 +160,11 @@ pre.prettyprint code {
 }
 
 .button {
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   display: block;
   background-color: var(--color-kelly);
   color: #fff;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 14px;
   border: none;
   border-radius: 4px;
@@ -180,6 +198,12 @@ pre.prettyprint code {
 .alert-danger {
   color: var(--color-crimson);
   box-shadow: 0 0 0 1px var(--color-crimson);
+}
+
+#identify-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 @media only screen and (max-width: 800px) {
