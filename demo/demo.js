@@ -1,6 +1,7 @@
 import Hotjar from '@hotjar/browser';
 
 import './reset.css';
+import './demo.css';
 
 // buttons
 const initButton = document.querySelector('#init-hotjar-button');
