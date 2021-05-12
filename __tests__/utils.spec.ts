@@ -1,10 +1,5 @@
 import { checkReadyState, executeHotjarCommand, initScript } from '../src/utils';
-
-type HotjarCommand = 'identify' | 'stateChange';
-
-interface WindowWithHotjar extends Window {
-  hj?: (method: HotjarCommand, ...data: unknown[]) => void;
-}
+import type { WindowWithHotjar } from '../src/utils';
 
 declare const window: WindowWithHotjar;
 
