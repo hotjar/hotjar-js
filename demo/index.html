@@ -49,7 +49,7 @@ import Hotjar from '@hotjar/browser'
         </div>
         <div class="right">
           <pre class="prettyprint"><code class="language-js">const siteId = 123;
-cont hotjarVersion = 6;
+const hotjarVersion = 6;
 
 Hotjar.init(siteId, hotjarVersion);
 </code></pre>
@@ -65,13 +65,13 @@ Hotjar.init(siteId, hotjarVersion);
             You can fill the form to identify yourself with a name and favorite color.
           </p>
 
-          <div id="identify-form">
+          <form id="identify-form">
             <label for="identify-hotjar-name">Your first name</label>
             <input id="identify-hotjar-name" type="text" placeholder="John" />
             <label for="identify-hotjar-color">Your favorite color</label>
             <input id="identify-hotjar-color" type="text" placeholder="blue" />
-            <button class="button" id="identify-hotjar-button" disabled>Identify</button>
-          </div>
+            <button class="button" id="identify-hotjar-button" type="submit" disabled>Identify</button>
+          </form>
           <div class="alert alert-success hidden" id="identify-hotjar-alert"></div>
         </div>
         <div class="right">

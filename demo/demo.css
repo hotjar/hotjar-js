@@ -46,6 +46,10 @@ h2 {
   font-size: 32px;
 }
 
+strong {
+  font-weight: 600;
+}
+
 #github-link {
   position: absolute;
   top: 0;

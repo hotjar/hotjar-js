@@ -12,7 +12,7 @@ const setStatusMessage = (selector, type, message) => {
   const statusBox = document.querySelector(selector);
   statusBox.classList.remove('alert-danger', 'alert-success', 'hidden');
   statusBox.classList.add(`alert-${type}`);
-  statusBox.textContent = message;
+  statusBox.innerHTML = message;
 };
 
 const enableHotjarFeatures = () => {
@@ -41,7 +41,8 @@ initButton.addEventListener(
 // identify button clicked
 identifyButton.addEventListener(
   'click',
-  () => {
+  (e) => {
+    e.preventDefault();
     const userId = '_' + Math.random().toString(36).substr(2, 9);
     const firstName = document.querySelector('#identify-hotjar-name').value || 'John';
     const favoriteColor = document.querySelector('#identify-hotjar-color').value || 'blue';
@@ -54,7 +55,7 @@ identifyButton.addEventListener(
     setStatusMessage(
       '#identify-hotjar-alert',
       'success',
-      `${firstName} identified with ${favoriteColor} as favorite color`,
+      `<strong>${firstName}</strong> identified with <strong>${favoriteColor}</strong> as favorite color`,
     );
   },
   false,
