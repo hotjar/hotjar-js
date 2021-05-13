@@ -1,6 +1,6 @@
 {
   "name": "@hotjar/browser",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -18,7 +18,8 @@
     "deploy-demo": "npm run build-demo && gh-pages -d demo_dist",
     "coverage": "jest --collectCoverage",
     "lint-check": "eslint 'src/**/*.{js,ts,tsx}'",
-    "lint-fix": "eslint 'src/**/*.{js,ts,tsx}' --fix"
+    "lint-fix": "eslint 'src/**/*.{js,ts,tsx}' --fix",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
