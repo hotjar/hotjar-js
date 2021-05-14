@@ -1,7 +1,7 @@
 {
   "name": "@hotjar/browser",
   "version": "1.0.1",
-  "description": "",
+  "description": "Bring Hotjar directly to your application",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
