@@ -1,10 +1,9 @@
-name: NPM publish
+name: NPM publish + GH Pages
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-    types: [closed]
 
 jobs:
   build:
@@ -18,9 +17,22 @@ jobs:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
       - run: git config user.email "mass.zambelli@gmail.com" && git config user.name "Massimo Zambelli"
-      - run: npm ci
-      - run: npm run build
-      - run: npm run release
-      - run: npm publish --access public
+      - name: Install dependencies
+        run: npm ci
+      - name: Build library
+        run: npm run build
+      - name: Generate changelog + tag
+        run: npm run release
+      - name: Commit changelog
+        run: git push --follow-tags origin main
+      - name: Publish on NPM
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Build demo site
+        run: npm run build-demo
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./demo_dist
