@@ -1,7 +1,7 @@
 {
   "name": "@hotjar/browser",
   "version": "1.0.1",
-  "description": "",
+  "description": "Bring Hotjar directly to your application",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -68,6 +68,13 @@
     "coverageReporters": [
       "text"
     ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90
+      }
+    },
     "transform": {
       "^.+\\.ts?$": "ts-jest"
     }
