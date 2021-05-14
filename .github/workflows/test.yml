@@ -1,4 +1,4 @@
-name: Testing the lib
+name: Library tests
 
 on:
   pull_request:
