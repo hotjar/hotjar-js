@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.0.2 (2021-05-14)
+
+
+### Bug Fixes
+
+* **ci:** remove old rule ([1c0b552](https://github.com/hotjar/hotjar-js/commit/1c0b552957238063bcf816d5a908ec6c83a678b5))
+
 ### [1.0.1](https://github.com/hotjar/hotjar-js/compare/v1.0.0...v1.0.1) (2021-05-13)
 
 ## 1.0.0 (2021-05-13)
