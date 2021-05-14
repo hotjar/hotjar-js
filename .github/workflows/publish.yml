@@ -12,18 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.PAT_TOKEN }}
       # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v2
         with:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: git config user.email "mass.zambelli@gmail.com" && git config --global user.name "Massimo Zambelli"
-      - run: npm install
+      - run: git config user.email "mass.zambelli@gmail.com" && git config user.name "Massimo Zambelli"
+      - run: npm ci
       - run: npm run build
       - run: npm run release
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - run: npm run deploy-demo
