@@ -9,6 +9,7 @@ describe('Hotjar library', () => {
   it('should return methods', () => {
     expect(Hotjar.init).toBeDefined();
     expect(Hotjar.isReady).toBeDefined();
+    expect(Hotjar.event).toBeDefined();
     expect(Hotjar.identify).toBeDefined();
     expect(Hotjar.stateChange).toBeDefined();
   });
@@ -27,6 +28,24 @@ describe('Hotjar library', () => {
       const init = Hotjar.init(123, 1);
       expect(initSpy).toHaveBeenCalled();
       expect(init).toBe(false);
+      expect(consoleErrorSpy).toHaveBeenCalled();
+    });
+  });
+
+  describe('event', () => {
+    it('should use event and return true', () => {
+      executeCommandSpy.mockReturnValueOnce(undefined);
+      const identify = Hotjar.event('BugSplat!');
+      expect(executeCommandSpy).toHaveBeenCalled();
+      expect(identify).toBe(true);
+    });
+    it('should return false in case of error', () => {
+      executeCommandSpy.mockImplementationOnce(() => {
+        throw Error('error');
+      });
+      const identify = Hotjar.event('BugSplat!');
+      expect(executeCommandSpy).toHaveBeenCalled();
+      expect(identify).toBe(false);
       expect(consoleErrorSpy).toHaveBeenCalled();
     });
   });
