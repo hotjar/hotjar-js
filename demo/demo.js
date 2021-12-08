@@ -73,6 +73,7 @@ eventsButton.addEventListener(
 
     try {
       subscribeToNewsletter(email);
+      Hotjar.event('subscribed_to_newsletter');
       setStatusMessage(
         '#events-hotjar-alert',
         'success',

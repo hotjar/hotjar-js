@@ -62,4 +62,4 @@ Hotjar.stateChange(newPage);
 
 ## Example
 
-You can find a working example on [Githup Pages](https://hotjar.github.io/hotjar-js/).
+You can find a working example on [GitHub Pages](https://hotjar.github.io/hotjar-js/).

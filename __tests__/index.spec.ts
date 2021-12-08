@@ -35,17 +35,17 @@ describe('Hotjar library', () => {
   describe('event', () => {
     it('should use event and return true', () => {
       executeCommandSpy.mockReturnValueOnce(undefined);
-      const identify = Hotjar.event('BugSplat!');
+      const event = Hotjar.event('BugSplat!');
       expect(executeCommandSpy).toHaveBeenCalled();
-      expect(identify).toBe(true);
+      expect(event).toBe(true);
     });
     it('should return false in case of error', () => {
       executeCommandSpy.mockImplementationOnce(() => {
         throw Error('error');
       });
-      const identify = Hotjar.event('BugSplat!');
+      const event = Hotjar.event('BugSplat!');
       expect(executeCommandSpy).toHaveBeenCalled();
-      expect(identify).toBe(false);
+      expect(event).toBe(false);
       expect(consoleErrorSpy).toHaveBeenCalled();
     });
   });
