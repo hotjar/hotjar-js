@@ -672,6 +672,7 @@ eventsButton.addEventListener(
 
     try {
       subscribeToNewsletter(email);
+      _hotjar_browser__WEBPACK_IMPORTED_MODULE_0__.default.event('subscribed_to_newsletter');
       setStatusMessage(
         '#events-hotjar-alert',
         'success',
