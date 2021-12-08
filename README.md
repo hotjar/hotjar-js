@@ -41,6 +41,15 @@ Hotjar.identify(userId, {
 });
 ```
 
+## Events API
+
+You can also track specific actions taken by your users and send that data to Hotjar via the [Hotjar Events API]("https://help.hotjar.com/hc/en-us/articles/4405109971095-Events-API-Reference").
+
+```javascript
+const actionName = 'error';
+Hotjar.event(actionName);
+```
+
 ## Manual URL changes
 
 Depending on how your website routing works, you might need to manually instruct Hotjar when a route change has happened. [More details about URL changes](https://help.hotjar.com/hc/en-us/articles/360034378534).

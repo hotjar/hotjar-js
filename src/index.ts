@@ -12,6 +12,15 @@ const Hotjar = {
       return false;
     }
   },
+  event: (actionName: string): boolean => {
+    try {
+      executeHotjarCommand('event', actionName);
+      return true;
+    } catch (error) {
+      console.error('Error:', error);
+      return false;
+    }
+  },
   identify: (userId: string | null, userInfo: UserInfo): boolean => {
     try {
       executeHotjarCommand('identify', userId, userInfo);

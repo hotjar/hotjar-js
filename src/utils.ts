@@ -1,4 +1,4 @@
-type HotjarCommand = 'identify' | 'stateChange';
+type HotjarCommand = 'event' | 'identify' | 'stateChange';
 
 export interface WindowWithHotjar extends Window {
   hj?: (method: HotjarCommand, ...data: unknown[]) => void;

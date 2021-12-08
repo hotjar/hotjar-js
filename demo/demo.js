@@ -6,6 +6,7 @@ import './demo.css';
 // buttons
 const initButton = document.querySelector('#init-hotjar-button');
 const identifyButton = document.querySelector('#identify-hotjar-button');
+const eventsButton = document.querySelector('#events-hotjar-button');
 const urlButton = document.querySelector('#url-hotjar-button');
 
 const setStatusMessage = (selector, type, message) => {
@@ -17,6 +18,7 @@ const setStatusMessage = (selector, type, message) => {
 
 const enableHotjarFeatures = () => {
   identifyButton.disabled = false;
+  eventsButton.disabled = false;
   urlButton.disabled = false;
 };
 
@@ -57,6 +59,33 @@ identifyButton.addEventListener(
       'success',
       `<strong>${firstName}</strong> identified with <strong>${favoriteColor}</strong> as favorite color`,
     );
+  },
+  false,
+);
+
+// events button clicked
+eventsButton.addEventListener(
+  'click', 
+  (e) => {
+    e.preventDefault();
+    const subscribeToNewsletter = (email) => { throw new Error('Something went wrong') };
+    const email = document.querySelector('#events-hotjar-email').value || 'john@example.com';
+
+    try {
+      subscribeToNewsletter(email);
+      setStatusMessage(
+        '#events-hotjar-alert',
+        'success',
+        'Thank you for subscribing!'
+      );
+    } catch (error) {
+      Hotjar.event('error');
+      setStatusMessage(
+        '#events-hotjar-alert',
+        'danger',
+        'Could not subscribe, please try again later.'
+      );
+    }
   },
   false,
 );
