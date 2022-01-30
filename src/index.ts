@@ -1,11 +1,12 @@
 import { checkReadyState, initScript, executeHotjarCommand } from './utils';
+import type { InitOpts } from './utils';
 
 type UserInfo = Record<string | number, string | number | Date | boolean>;
 
 const Hotjar = {
-  init: (hotjarId: number, hotjarVersion: number): boolean => {
+  init: (hotjarId: number, hotjarVersion: number, opts?: InitOpts): boolean => {
     try {
-      initScript(hotjarId, hotjarVersion);
+      initScript(hotjarId, hotjarVersion, opts);
       return true;
     } catch (error) {
       console.error('Error:', error);
