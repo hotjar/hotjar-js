@@ -41,7 +41,20 @@ describe('Utils', () => {
         expect.objectContaining({
           id: 'hotjar-init-script',
           crossOrigin: 'anonymous',
-          innerText: expect.stringContaining('12345'),
+          innerText: expect.stringMatching(/(?=.*hjdebug:false)(?=.*12345).*/i),
+        }),
+      );
+      window.hj = undefined;
+    });
+    it('should append a script with debug option to the body', () => {
+      // in order to not have the code throw
+      window.hj = fakeHJ;
+      initScript(12345, 1, { debug: true });
+      expect(document.head.appendChild).toHaveBeenCalledWith(
+        expect.objectContaining({
+          id: 'hotjar-init-script',
+          crossOrigin: 'anonymous',
+          innerText: expect.stringMatching(/(?=.*hjdebug:true)(?=.*12345).*/i),
         }),
       );
       window.hj = undefined;
