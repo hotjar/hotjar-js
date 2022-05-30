@@ -6,6 +6,11 @@ import Hotjar from '@hotjar/browser'
 const hotjarVersion = 6;
 
 Hotjar.init(siteId, hotjarVersion);
+
+// Initializing with `debug` option:
+Hotjar.init(siteId, hotjarVersion, {
+  debug: true
+});
 </code></pre></div></div><h2>Identify API</h2><div class="row"><div class="left"><p>One of the main interest of this library is to be able to use <a target="_blank" href="https://help.hotjar.com/hc/en-us/articles/360033640653-Identify-API-Reference">Hotjar Identify API</a>.</p><p>You can fill the form to identify yourself with a name and favorite color.</p><form id="identify-form"><label for="identify-hotjar-name">Your first name</label> <input id="identify-hotjar-name" placeholder="John"/> <label for="identify-hotjar-color">Your favorite color</label> <input id="identify-hotjar-color" placeholder="blue"/> <button class="button" id="identify-hotjar-button" type="submit" disabled="disabled">Identify</button></form><div class="alert alert-success hidden" id="identify-hotjar-alert"></div></div><div class="right"><pre class="prettyprint"><code class="language-js">const userId = 'abc_123';
 const firstName = 'John';
 const favoriteColor = 'blue';
