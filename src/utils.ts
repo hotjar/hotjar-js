@@ -33,6 +33,7 @@ const appendScript = (scriptText: string, scriptId: string): boolean => {
     const existingScript = document.getElementById(scriptId) as HTMLScriptElement;
     const script = existingScript || document.createElement('script');
     script.id = scriptId;
+    script.nonce = scriptId;
     script.innerText = scriptText;
     script.crossOrigin = 'anonymous';
 
