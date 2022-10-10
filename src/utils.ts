@@ -1,7 +1,8 @@
 type HotjarCommand = 'event' | 'identify' | 'stateChange';
 
 export type InitOpts = {
-  debug?: boolean
+  debug?: boolean,
+  nonce?: string,
 };
 
 export interface WindowWithHotjar extends Window {
@@ -28,12 +29,12 @@ export const executeHotjarCommand = (command: HotjarCommand, ...args: unknown[])
   throw Error('Hotjar is not available, make sure init has been called.');
 };
 
-const appendScript = (scriptText: string, scriptId: string): boolean => {
+const appendScript = (scriptText: string, scriptId: string, nonce: undefined | string = undefined): boolean => {
   try {
     const existingScript = document.getElementById(scriptId) as HTMLScriptElement;
     const script = existingScript || document.createElement('script');
     script.id = scriptId;
-    script.nonce = scriptId;
+    script.nonce = nonce;
     script.innerText = scriptText;
     script.crossOrigin = 'anonymous';
 
@@ -52,7 +53,7 @@ export const initScript = (
   const isDebug = opts?.debug || false;
 
   const hotjarScriptCode = `(function(h,o,t,j,a,r){h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};h._hjSettings={hjid:${hotjarId},hjsv:${hotjarVersion},hjdebug:${isDebug}};a=o.getElementsByTagName('head')[0];r=o.createElement('script');r.async=1;r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;a.appendChild(r);})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`;
-  const isAppended = appendScript(hotjarScriptCode, 'hotjar-init-script');
+  const isAppended = appendScript(hotjarScriptCode, 'hotjar-init-script', opts?.nonce);
   if (isAppended && checkReadyState()) {
     return;
   }

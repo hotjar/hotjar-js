@@ -70,8 +70,15 @@ Hotjar.stateChange(newPage);
 If the project uses [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP), you can add a special string to your server response headers so that the HotJar script loads without problems
 
 ```
+// Initializing with `nonce` option:
+Hotjar.init(siteId, hotjarVersion, {
+  nonce: 'rAnDoM'
+});
+```
+
+```
 Content-Security-Policy: 
-  script-src *.hotjar.com 'nonce-hotjar-init-script'; 
+  script-src *.hotjar.com 'nonce-rAnDoM'; 
   frame-src *.hotjar.com;
 ```
 
