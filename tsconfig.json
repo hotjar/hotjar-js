@@ -20,7 +20,8 @@
     "isolatedModules": true,
     "noFallthroughCasesInSwitch": true,
     "declaration": true,
-    "declarationDir": "./dist"
+    "declarationDir": "./dist",
+    "inlineSources": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "rollup.config.js"]
