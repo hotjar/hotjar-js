@@ -1,5 +1,7 @@
 # @hotjar/browser
 
+[![@hotjar/browser](https://img.shields.io/npm/v/@hotjar/browser.svg?label=@hotjar/browser)](https://www.npmjs.com/package/@hotjar/browser)
+
 > Bring [Hotjar](https://www.hotjar.com/) directly to your application
 
 ## Installation
@@ -59,7 +61,7 @@ Hotjar.event(actionName);
 
 Depending on how your website routing works, you might need to manually instruct Hotjar when a route change has happened. [More details about URL changes](https://help.hotjar.com/hc/en-us/articles/360034378534).
 
-```
+```javascript
 const newPage = '/new';
 
 Hotjar.stateChange(newPage);
@@ -69,7 +71,7 @@ Hotjar.stateChange(newPage);
 
 If the project uses [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP), you can add a special string to your server response headers so that the HotJar script loads without problems
 
-```
+```javascript
 // Initializing with `nonce` option:
 Hotjar.init(siteId, hotjarVersion, {
   nonce: 'rAnDoM'
