@@ -1,7 +1,7 @@
 {
-  "name": "@hotjar/browser",
+  "name": "@contentsquare/browser",
   "version": "1.0.9",
-  "description": "Bring Hotjar directly to your application",
+  "description": "Bring Contentsquare directly to your application",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",

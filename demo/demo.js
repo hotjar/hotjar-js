@@ -1,13 +1,13 @@
-import Hotjar from '@hotjar/browser';
+import Contentsquare from '@contentsquare/browser';
 
 import './reset.css';
 import './demo.css';
 
 // buttons
-const initButton = document.querySelector('#init-hotjar-button');
-const identifyButton = document.querySelector('#identify-hotjar-button');
-const eventsButton = document.querySelector('#events-hotjar-button');
-const urlButton = document.querySelector('#url-hotjar-button');
+const initButton = document.querySelector('#init-contentsquare-button');
+const identifyButton = document.querySelector('#identify-contentsquare-button');
+const eventsButton = document.querySelector('#events-contentsquare-button');
+const urlButton = document.querySelector('#url-contentsquare-button');
 
 const setStatusMessage = (selector, type, message) => {
   const statusBox = document.querySelector(selector);
@@ -16,15 +16,15 @@ const setStatusMessage = (selector, type, message) => {
   statusBox.innerHTML = message;
 };
 
-const enableHotjarFeatures = () => {
+const enableContentsquareFeatures = () => {
   identifyButton.disabled = false;
   eventsButton.disabled = false;
   urlButton.disabled = false;
 };
 
-const setHotjarInitialized = () => {
-  enableHotjarFeatures();
-  setStatusMessage('#init-hotjar-alert', 'success', 'Hotjar is initialized!');
+const setContentsquareInitialized = () => {
+  enableContentsquareFeatures();
+  setStatusMessage('#init-contentsquare-alert', 'success', 'Contentsquare is initialized!');
 };
 
 // init button clicked
@@ -32,10 +32,10 @@ initButton.addEventListener(
   'click',
   () => {
     const siteId = 2397592;
-    const hotjarVersion = 6;
-    Hotjar.init(siteId, hotjarVersion);
+    const contentsquareVersion = 6;
+    Contentsquare.init(siteId, contentsquareVersion);
 
-    setHotjarInitialized();
+    setContentsquareInitialized();
   },
   false,
 );
@@ -46,16 +46,16 @@ identifyButton.addEventListener(
   (e) => {
     e.preventDefault();
     const userId = '_' + Math.random().toString(36).substr(2, 9);
-    const firstName = document.querySelector('#identify-hotjar-name').value || 'John';
-    const favoriteColor = document.querySelector('#identify-hotjar-color').value || 'blue';
+    const firstName = document.querySelector('#identify-contentsquare-name').value || 'John';
+    const favoriteColor = document.querySelector('#identify-contentsquare-color').value || 'blue';
 
-    Hotjar.identify(userId, {
+    Contentsquare.identify(userId, {
       first_name: firstName,
       color: favoriteColor,
     });
 
     setStatusMessage(
-      '#identify-hotjar-alert',
+      '#identify-contentsquare-alert',
       'success',
       `<strong>${firstName}</strong> identified with <strong>${favoriteColor}</strong> as favorite color`,
     );
@@ -65,26 +65,24 @@ identifyButton.addEventListener(
 
 // events button clicked
 eventsButton.addEventListener(
-  'click', 
+  'click',
   (e) => {
     e.preventDefault();
-    const subscribeToNewsletter = (email) => { throw new Error('Something went wrong') };
-    const email = document.querySelector('#events-hotjar-email').value || 'john@example.com';
+    const subscribeToNewsletter = (email) => {
+      throw new Error('Something went wrong');
+    };
+    const email = document.querySelector('#events-contentsquare-email').value || 'john@example.com';
 
     try {
       subscribeToNewsletter(email);
-      Hotjar.event('subscribed_to_newsletter');
-      setStatusMessage(
-        '#events-hotjar-alert',
-        'success',
-        'Thank you for subscribing!'
-      );
+      Contentsquare.event('subscribed_to_newsletter');
+      setStatusMessage('#events-contentsquare-alert', 'success', 'Thank you for subscribing!');
     } catch (error) {
-      Hotjar.event('error');
+      Contentsquare.event('error');
       setStatusMessage(
-        '#events-hotjar-alert',
+        '#events-contentsquare-alert',
         'danger',
-        'Could not subscribe, please try again later.'
+        'Could not subscribe, please try again later.',
       );
     }
   },
@@ -96,9 +94,9 @@ urlButton.addEventListener(
   'click',
   () => {
     const newPage = '/new';
-    Hotjar.stateChange(newPage);
+    Contentsquare.stateChange(newPage);
 
-    setStatusMessage('#url-hotjar-alert', 'success', 'The current page is /new');
+    setStatusMessage('#url-contentsquare-alert', 'success', 'The current page is /new');
   },
   false,
 );

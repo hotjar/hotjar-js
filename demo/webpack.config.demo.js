@@ -21,7 +21,7 @@ module.exports = () => {
     modules: ['node_modules', './'],
     extensions: ['.js'],
     alias: {
-      '@hotjar/browser': path.join(__dirname, '../dist/index.js'),
+      '@contentsquare/browser': path.join(__dirname, '../dist/index.js'),
     },
   };
 
