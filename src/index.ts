@@ -1,12 +1,12 @@
-import { checkReadyState, initScript, executeHotjarCommand } from './utils';
+import { checkReadyState, initScript, executeContentsquareCommand } from './utils';
 import type { InitOpts } from './utils';
 
 type UserInfo = Record<string | number, string | number | Date | boolean>;
 
-const Hotjar = {
-  init: (hotjarId: number, hotjarVersion: number, opts?: InitOpts): boolean => {
+const Contentsquare = {
+  init: (contentsquareId: number, contentsquareVersion: number, opts?: InitOpts): boolean => {
     try {
-      initScript(hotjarId, hotjarVersion, opts);
+      initScript(contentsquareId, contentsquareVersion, opts);
       return true;
     } catch (error) {
       console.error('Error:', error);
@@ -15,7 +15,7 @@ const Hotjar = {
   },
   event: (actionName: string): boolean => {
     try {
-      executeHotjarCommand('event', actionName);
+      executeContentsquareCommand('event', actionName);
       return true;
     } catch (error) {
       console.error('Error:', error);
@@ -24,7 +24,7 @@ const Hotjar = {
   },
   identify: (userId: string | null, userInfo: UserInfo): boolean => {
     try {
-      executeHotjarCommand('identify', userId, userInfo);
+      executeContentsquareCommand('identify', userId, userInfo);
       return true;
     } catch (error) {
       console.error('Error:', error);
@@ -33,7 +33,7 @@ const Hotjar = {
   },
   stateChange: (relativePath: string): boolean => {
     try {
-      executeHotjarCommand('stateChange', relativePath);
+      executeContentsquareCommand('stateChange', relativePath);
       return true;
     } catch (error) {
       console.error('Error:', error);
@@ -43,4 +43,4 @@ const Hotjar = {
   isReady: checkReadyState,
 };
 
-export default Hotjar;
+export default Contentsquare;

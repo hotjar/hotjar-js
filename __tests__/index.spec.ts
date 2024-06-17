@@ -1,23 +1,23 @@
-import Hotjar from '../src/index';
+import Contentsquare from '../src/index';
 import * as utils from '../src/utils';
 
 const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
 const initSpy = jest.spyOn(utils, 'initScript');
-const executeCommandSpy = jest.spyOn(utils, 'executeHotjarCommand');
+const executeCommandSpy = jest.spyOn(utils, 'executeContentsquareCommand');
 
-describe('Hotjar library', () => {
+describe('Contentsquare library', () => {
   it('should return methods', () => {
-    expect(Hotjar.init).toBeDefined();
-    expect(Hotjar.isReady).toBeDefined();
-    expect(Hotjar.event).toBeDefined();
-    expect(Hotjar.identify).toBeDefined();
-    expect(Hotjar.stateChange).toBeDefined();
+    expect(Contentsquare.init).toBeDefined();
+    expect(Contentsquare.isReady).toBeDefined();
+    expect(Contentsquare.event).toBeDefined();
+    expect(Contentsquare.identify).toBeDefined();
+    expect(Contentsquare.stateChange).toBeDefined();
   });
 
   describe('init', () => {
     it('should init script and return true', () => {
       initSpy.mockReturnValueOnce(undefined);
-      const init = Hotjar.init(123, 1);
+      const init = Contentsquare.init(123, 1);
       expect(initSpy).toHaveBeenCalled();
       expect(init).toBe(true);
     });
@@ -25,7 +25,7 @@ describe('Hotjar library', () => {
       initSpy.mockImplementationOnce(() => {
         throw Error('error');
       });
-      const init = Hotjar.init(123, 1);
+      const init = Contentsquare.init(123, 1);
       expect(initSpy).toHaveBeenCalled();
       expect(init).toBe(false);
       expect(consoleErrorSpy).toHaveBeenCalled();
@@ -35,7 +35,7 @@ describe('Hotjar library', () => {
   describe('event', () => {
     it('should use event and return true', () => {
       executeCommandSpy.mockReturnValueOnce(undefined);
-      const event = Hotjar.event('BugSplat!');
+      const event = Contentsquare.event('BugSplat!');
       expect(executeCommandSpy).toHaveBeenCalled();
       expect(event).toBe(true);
     });
@@ -43,7 +43,7 @@ describe('Hotjar library', () => {
       executeCommandSpy.mockImplementationOnce(() => {
         throw Error('error');
       });
-      const event = Hotjar.event('BugSplat!');
+      const event = Contentsquare.event('BugSplat!');
       expect(executeCommandSpy).toHaveBeenCalled();
       expect(event).toBe(false);
       expect(consoleErrorSpy).toHaveBeenCalled();
@@ -53,7 +53,7 @@ describe('Hotjar library', () => {
   describe('identify', () => {
     it('should use identify and return true', () => {
       executeCommandSpy.mockReturnValueOnce(undefined);
-      const identify = Hotjar.identify('321', { foo: 'bar' });
+      const identify = Contentsquare.identify('321', { foo: 'bar' });
       expect(executeCommandSpy).toHaveBeenCalled();
       expect(identify).toBe(true);
     });
@@ -61,7 +61,7 @@ describe('Hotjar library', () => {
       executeCommandSpy.mockImplementationOnce(() => {
         throw Error('error');
       });
-      const identify = Hotjar.identify('321', { foo: 'bar' });
+      const identify = Contentsquare.identify('321', { foo: 'bar' });
       expect(executeCommandSpy).toHaveBeenCalled();
       expect(identify).toBe(false);
       expect(consoleErrorSpy).toHaveBeenCalled();
@@ -71,7 +71,7 @@ describe('Hotjar library', () => {
   describe('stateChange', () => {
     it('should use stateChange and return true', () => {
       executeCommandSpy.mockReturnValueOnce(undefined);
-      const stateChange = Hotjar.stateChange('/my/url');
+      const stateChange = Contentsquare.stateChange('/my/url');
       expect(executeCommandSpy).toHaveBeenCalled();
       expect(stateChange).toBe(true);
     });
@@ -79,7 +79,7 @@ describe('Hotjar library', () => {
       executeCommandSpy.mockImplementationOnce(() => {
         throw Error('error');
       });
-      const stateChange = Hotjar.stateChange('/my/url');
+      const stateChange = Contentsquare.stateChange('/my/url');
       expect(executeCommandSpy).toHaveBeenCalled();
       expect(stateChange).toBe(false);
       expect(consoleErrorSpy).toHaveBeenCalled();
